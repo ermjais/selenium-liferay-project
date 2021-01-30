@@ -19,7 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import testpro.beans.MyFormData;
 import testpro.util.MyUtilities;
 
-public class ExcelParser {
+public class ExcelParserPoi {
 
 	public static void main(String[] args) {
 

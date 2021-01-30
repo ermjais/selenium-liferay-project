@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import testpro.beans.MyFormData;
-import testpro.excel.ExcelParser;
+import testpro.excel.ExcelParserPoi;
 import testpro.util.SeleniumUtil;
 
 public class MainClass {
@@ -34,7 +34,7 @@ public class MainClass {
 		//open browser with desried URL
 		String url = "http://localhost:8080/testpage1";
 		
-		for (MyFormData formData : ExcelParser.getExcel()) {	
+		for (MyFormData formData : ExcelParserPoi.getExcel()) {	
 			navigateToUrl(driver, url);
 			
 			makeSurePageLoaded(driver);
