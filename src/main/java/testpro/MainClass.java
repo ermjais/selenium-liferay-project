@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import testpro.beans.FormData;
+import testpro.beans.MyFormData;
 import testpro.excel.ExcelParser;
 import testpro.util.SeleniumUtil;
 
@@ -34,7 +34,7 @@ public class MainClass {
 		//open browser with desried URL
 		String url = "http://localhost:8080/testpage1";
 		
-		for (FormData formData : ExcelParser.getExcel()) {	
+		for (MyFormData formData : ExcelParser.getExcel()) {	
 			navigateToUrl(driver, url);
 			
 			makeSurePageLoaded(driver);
@@ -80,7 +80,7 @@ public class MainClass {
 		
 	}
 	
-	public static void fillData(WebDriver driver, FormData formData) {
+	public static void fillData(WebDriver driver, MyFormData formData) {
 		
 		try {
 			TimeUnit.SECONDS.sleep(2);
@@ -155,7 +155,7 @@ public class MainClass {
 		
 		uploadFile(driver, formData);
 	}
-	public static void uploadFile(WebDriver driver, FormData formData) {
+	public static void uploadFile(WebDriver driver, MyFormData formData) {
 //		WebElement uploadButton = driver.findElement(By.cssSelector(
 //				"div.liferay-ddm-form-field-document-library button.select-button.btn.btn-secondary"));
 		WebElement uploadButton = SeleniumUtil.findElementByCssSelector(driver,

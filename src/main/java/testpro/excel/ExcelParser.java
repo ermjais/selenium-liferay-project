@@ -16,7 +16,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import testpro.beans.FormData;
+import testpro.beans.MyFormData;
 import testpro.util.MyUtilities;
 
 public class ExcelParser {
@@ -27,12 +27,12 @@ public class ExcelParser {
 	}
 
 	
-	public static FormData[] getExcel() {
+	public static MyFormData[] getExcel() {
 
 		FileInputStream fileIs;
 		File file = new File("C:\\java_workspace\\testpro_excel.xlsx");
 		
-		List<FormData> formDataList = new ArrayList<FormData>();
+		List<MyFormData> formDataList = new ArrayList<MyFormData>();
 		try {
 			fileIs = new FileInputStream(file);
 			Workbook workbook = new XSSFWorkbook(fileIs);
@@ -45,33 +45,33 @@ public class ExcelParser {
 				if(row.getCell(0) == null) {
 					continue;
 				}
-				FormData formData = new FormData();
+				MyFormData MyFormData = new MyFormData();
 				//name
-				formData.setName(row.getCell(0).getStringCellValue());
+				MyFormData.setName(row.getCell(0).getStringCellValue());
 				
 				//date
 				Date theDate = row.getCell(1).getDateCellValue();
-				formData.setDate(MyUtilities.convertToLocalDateViaInstant(theDate));
+				MyFormData.setDate(MyUtilities.convertToLocalDateViaInstant(theDate));
 
 				//chosen option
-				formData.setChosenOption(row.getCell(2).getStringCellValue());
+				MyFormData.setChosenOption(row.getCell(2).getStringCellValue());
 				
 				//multiple choice
 				int selectedOption = Double.valueOf(row.getCell(5).getNumericCellValue()).intValue();
 				if(selectedOption == 1) {
-					formData.setOption1(true);
+					MyFormData.setOption1(true);
 				}else {
-					formData.setOption1(false);
+					MyFormData.setOption1(false);
 				}
 				if(selectedOption == 2) {
-					formData.setOption2(true);
+					MyFormData.setOption2(true);
 				}else {
-					formData.setOption2(false);
+					MyFormData.setOption2(false);
 				}
 				if(selectedOption == 3) {
-					formData.setOption3(true);
+					MyFormData.setOption3(true);
 				}else {
-					formData.setOption3(false);
+					MyFormData.setOption3(false);
 				}
 				
 				//file path
@@ -85,11 +85,11 @@ public class ExcelParser {
 				}
 				
 				
-				formData.setFilePath(absolutePath);
+				MyFormData.setFilePath(absolutePath);
 				
-				System.out.println(formData.toString());
+				System.out.println(MyFormData.toString());
 				System.out.println("---------------------------------------");
-				formDataList.add(formData);
+				formDataList.add(MyFormData);
 			}
 
 		} catch (FileNotFoundException e) {
@@ -101,7 +101,7 @@ public class ExcelParser {
 		}
 
 
-		FormData allFormData[] = formDataList.stream().toArray(FormData[]::new);
+		MyFormData allFormData[] = formDataList.stream().toArray(MyFormData[]::new);
 		
 		
 		return allFormData;
