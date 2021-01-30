@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SeleniumUtil {
+public class MySeleniumUtil {
 
 	public static void waitUntilElementByCssSelectorToBeClickable(WebDriver driver, String cssSelector) {
 		(new WebDriverWait(driver, 10))

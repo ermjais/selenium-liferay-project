@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import testpro.beans.MyFormData;
 import testpro.excel.ExcelParserPoi;
-import testpro.util.SeleniumUtil;
+import testpro.util.MySeleniumUtil;
 
 public class MainClass {
 	private static boolean signedIn = false;
@@ -58,7 +58,7 @@ public class MainClass {
 //		(new WebDriverWait(driver, 10))
 //		.until(ExpectedConditions.presenceOfElementLocated(By.className("lfr-ddm-form-submit")));
 		
-		SeleniumUtil.waitUntilElementByClassName(driver, "lfr-ddm-form-submit");
+		MySeleniumUtil.waitUntilElementByClassName(driver, "lfr-ddm-form-submit");
 		
 	}
 	
@@ -69,14 +69,14 @@ public class MainClass {
 	
 	public static void doSubmit(WebDriver driver) {
 //		WebElement submitElement = driver.findElement(By.className("lfr-ddm-form-submit"));
-		WebElement submitElement = SeleniumUtil.findElementByClassName(driver, "lfr-ddm-form-submit");
+		WebElement submitElement = MySeleniumUtil.findElementByClassName(driver, "lfr-ddm-form-submit");
 		submitElement.click();
 		
 		/*(new WebDriverWait(driver, 10))
 		.until(ExpectedConditions.presenceOfElementLocated(
 				By.cssSelector("div.ddm-form-success-page")));*/
 		
-		SeleniumUtil.waitUntilElementByCssSelector(driver, "div.ddm-form-success-page");
+		MySeleniumUtil.waitUntilElementByCssSelector(driver, "div.ddm-form-success-page");
 		
 	}
 	
@@ -90,7 +90,7 @@ public class MainClass {
 		}
 		
 //		WebElement nameElement = driver.findElement(By.cssSelector("input[placeholder='name']"));
-		WebElement nameElement = SeleniumUtil.findElementByCssSelector(driver, "input[placeholder='name']");
+		WebElement nameElement = MySeleniumUtil.findElementByCssSelector(driver, "input[placeholder='name']");
 				
 		//System.out.println("before wrting name");
 		nameElement.sendKeys(formData.getName()); 
@@ -107,7 +107,7 @@ public class MainClass {
 		DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		String dateOutput = formData.getDate().format(newPattern);
 		System.out.println("date:" + dateOutput);
-		WebElement dateElement = SeleniumUtil.findElementByCssSelector(driver,
+		WebElement dateElement = MySeleniumUtil.findElementByCssSelector(driver,
 				".date-picker .form-control.input-group-inset.input-group-inset-after");
 		dateElement.clear();
 		dateElement.sendKeys(dateOutput);
@@ -117,21 +117,21 @@ public class MainClass {
 //		label"));
 		
 		if(formData.isOption1()) {
-			WebElement chosenCheckboxElement = SeleniumUtil.findElementByCssSelector(
+			WebElement chosenCheckboxElement = MySeleniumUtil.findElementByCssSelector(
 					driver, 
 					"div.lfr-ddm-checkbox-multiple .custom-control.custom-checkbox:nth-child(1) "
 					+ "label");
 			chosenCheckboxElement.click();
 		}
 		if(formData.isOption2()) {
-			WebElement chosenCheckboxElement = SeleniumUtil.findElementByCssSelector(
+			WebElement chosenCheckboxElement = MySeleniumUtil.findElementByCssSelector(
 					driver, 
 					"div.lfr-ddm-checkbox-multiple .custom-control.custom-checkbox:nth-child(2) "
 					+ "label");
 			chosenCheckboxElement.click();
 		}
 		if(formData.isOption3()) {
-			WebElement chosenCheckboxElement = SeleniumUtil.findElementByCssSelector(
+			WebElement chosenCheckboxElement = MySeleniumUtil.findElementByCssSelector(
 					driver, 
 					"div.lfr-ddm-checkbox-multiple .custom-control.custom-checkbox:nth-child(3) "
 					+ "label");
@@ -142,13 +142,13 @@ public class MainClass {
 //		WebElement arrows = driver.findElement(By.cssSelector(
 //				".select-arrow-down-container"));
 //		
-		WebElement arrows = SeleniumUtil.findElementByCssSelector(driver,".select-arrow-down-container");
+		WebElement arrows = MySeleniumUtil.findElementByCssSelector(driver,".select-arrow-down-container");
 		
 		arrows.click();
 		
 //		WebElement selectOptionButton = driver.findElement(By.cssSelector("button[data-testid='dropdownItem-3']"));
 		String chosenOption = formData.getChosenOption();
-		WebElement selectOptionButton = SeleniumUtil.findElementByCssSelector(driver,"button[label='" + chosenOption + "']");
+		WebElement selectOptionButton = MySeleniumUtil.findElementByCssSelector(driver,"button[label='" + chosenOption + "']");
 
 		selectOptionButton.click();
 		
@@ -158,7 +158,7 @@ public class MainClass {
 	public static void uploadFile(WebDriver driver, MyFormData formData) {
 //		WebElement uploadButton = driver.findElement(By.cssSelector(
 //				"div.liferay-ddm-form-field-document-library button.select-button.btn.btn-secondary"));
-		WebElement uploadButton = SeleniumUtil.findElementByCssSelector(driver,
+		WebElement uploadButton = MySeleniumUtil.findElementByCssSelector(driver,
 				"div.liferay-ddm-form-field-document-library button.select-button.btn.btn-secondary");
 
 		uploadButton.click();
@@ -167,14 +167,14 @@ public class MainClass {
 		
 //		WebElement uploadElement = driver.findElement(By.cssSelector("input#vwsx___InputFile"));
 		
-		WebElement uploadElement = SeleniumUtil.findElementByCssSelector(driver,"input#vwsx___InputFile");
+		WebElement uploadElement = MySeleniumUtil.findElementByCssSelector(driver,"input#vwsx___InputFile");
 		
 		uploadElement.sendKeys(formData.getFilePath()); 
 		
 		
 //		WebElement addButton = driver.findElement(By.cssSelector(
 //				"#p_p_id_com_liferay_item_selector_web_portlet_ItemSelectorPortlet_ ul.navbar-nav>li.nav-item>button.btn.btn-primary"));
-		WebElement addButton = SeleniumUtil.findElementByCssSelector(driver,
+		WebElement addButton = MySeleniumUtil.findElementByCssSelector(driver,
 				"#p_p_id_com_liferay_item_selector_web_portlet_ItemSelectorPortlet_ ul.navbar-nav>li.nav-item>button.btn.btn-primary");
 
 		addButton.click();
@@ -185,7 +185,7 @@ public class MainClass {
 //		(new WebDriverWait(driver, 10))
 //		.until(ExpectedConditions.presenceOfElementLocated(
 //				By.cssSelector("div.liferay-ddm-form-field-document-library button.clear-button")));
-		SeleniumUtil.waitUntilElementByCssSelector(driver, "div.liferay-ddm-form-field-document-library button.clear-button");
+		MySeleniumUtil.waitUntilElementByCssSelector(driver, "div.liferay-ddm-form-field-document-library button.clear-button");
 		
 	}
 	
@@ -194,21 +194,21 @@ public class MainClass {
 		
 //		WebElement signInButton = driver.findElement(By.cssSelector(
 //				".taglib-icon-label"));
-		WebElement signInButton =  SeleniumUtil.findElementByCssSelector(driver,
+		WebElement signInButton =  MySeleniumUtil.findElementByCssSelector(driver,
 				".taglib-icon-label");
 		
 		signInButton.click();
 		
 
 //		WebElement userNameElement = driver.findElement(By.cssSelector("#_com_liferay_login_web_portlet_LoginPortlet_login"));
-		WebElement userNameElement =  SeleniumUtil.findElementByCssSelector(driver,
+		WebElement userNameElement =  MySeleniumUtil.findElementByCssSelector(driver,
 				"#_com_liferay_login_web_portlet_LoginPortlet_login");
 		
 		userNameElement.clear();
 		userNameElement.sendKeys("test@liferay.com"); 
 		
 //		WebElement passwordElement = driver.findElement(By.cssSelector("#_com_liferay_login_web_portlet_LoginPortlet_password"));
-		WebElement passwordElement =  SeleniumUtil.findElementByCssSelector(driver,
+		WebElement passwordElement =  MySeleniumUtil.findElementByCssSelector(driver,
 				"#_com_liferay_login_web_portlet_LoginPortlet_password");
 
 		passwordElement.sendKeys("test"); 
@@ -216,14 +216,14 @@ public class MainClass {
 		
 //		WebElement submitButton = driver.findElement(By.cssSelector(
 //				"form#_com_liferay_login_web_portlet_LoginPortlet_loginFormModal button[type='submit'].btn.btn-primary"));
-		WebElement submitButton =  SeleniumUtil.findElementByCssSelector(driver,
+		WebElement submitButton =  MySeleniumUtil.findElementByCssSelector(driver,
 				"form#_com_liferay_login_web_portlet_LoginPortlet_loginFormModal button[type='submit'].btn.btn-primary");
 
 		submitButton.click(); 
 		
 //		(new WebDriverWait(driver, 10))
 //		.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("body.has-control-menu")));
-		SeleniumUtil.waitUntilElementByCssSelector(driver, "body.has-control-menu");
+		MySeleniumUtil.waitUntilElementByCssSelector(driver, "body.has-control-menu");
 		
 		signedIn=true;
 	}
