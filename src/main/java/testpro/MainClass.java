@@ -43,7 +43,7 @@ public class MainClass {
 				signin(driver);
 			}
 			
-			fillData(driver, formData);
+			fillAllData(driver, formData);
 			
 			doSubmit(driver);
 		}
@@ -80,7 +80,7 @@ public class MainClass {
 		
 	}
 	
-	public static void fillData(WebDriver driver, MyFormData formData) {
+	public static void fillAllData(WebDriver driver, MyFormData formData) {
 		
 		try {
 			TimeUnit.SECONDS.sleep(2);
